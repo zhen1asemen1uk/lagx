@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 
@@ -81,20 +81,19 @@ const Li = styled.li`
 
 export default function Bar() {
     const { pathname } = useLocation();
-    const [colorIcon, setColorIcon] = useState(false);
 
     const arrLinks_1 = [
         {
             title: "My data",
             link: "/myData",
-            icon: <PersonalSvg fill={colorIcon === "/" ? "white" : "gray"} />,
+            icon: (
+                <PersonalSvg fill={pathname === "/myData" ? "white" : "gray"} />
+            ),
         },
         {
             title: "Enter key",
             link: "/enterKey",
-            icon: (
-                <KeySvg fill={colorIcon === "/enterKey" ? "white" : "gray"} />
-            ),
+            icon: <KeySvg fill={pathname === "/enterKey" ? "white" : "gray"} />,
         },
         {
             title: "Personal information",
@@ -102,7 +101,7 @@ export default function Bar() {
             icon: (
                 <ProfileSvg
                     fill={
-                        colorIcon === "/personalInformation" ? "white" : "gray"
+                        pathname === "/personalInformation" ? "white" : "gray"
                     }
                 />
             ),
@@ -115,7 +114,7 @@ export default function Bar() {
             link: "/rewardProgram",
             icon: (
                 <FireSvg
-                    fill={colorIcon === "/rewardProgram" ? "white" : "gray"}
+                    fill={pathname === "/rewardProgram" ? "white" : "gray"}
                 />
             ),
         },
@@ -124,7 +123,7 @@ export default function Bar() {
             link: "/writeTestimonials",
             icon: (
                 <MessegesSvg
-                    fill={colorIcon === "/writeTestimonials" ? "white" : "gray"}
+                    fill={pathname === "/writeTestimonials" ? "white" : "gray"}
                 />
             ),
         },
@@ -133,7 +132,7 @@ export default function Bar() {
             link: "/affiliate",
             icon: (
                 <AffiliateSvg
-                    fill={colorIcon === "/affiliate" ? "white" : "gray"}
+                    fill={pathname === "/affiliate" ? "white" : "gray"}
                 />
             ),
         },
@@ -142,7 +141,7 @@ export default function Bar() {
             link: "/statistics",
             icon: (
                 <StatisticsSvg
-                    fill={colorIcon === "/statistics" ? "white" : "gray"}
+                    fill={pathname === "/statistics" ? "white" : "gray"}
                 />
             ),
         },
@@ -150,9 +149,7 @@ export default function Bar() {
             title: "Support",
             link: "/support",
             icon: (
-                <SupportSvg
-                    fill={colorIcon === "/support" ? "white" : "gray"}
-                />
+                <SupportSvg fill={pathname === "/support" ? "white" : "gray"} />
             ),
         },
         {
@@ -160,7 +157,7 @@ export default function Bar() {
             link: "/reccurence",
             icon: (
                 <ReccurenceSvg
-                    fill={colorIcon === "/reccurence" ? "white" : "gray"}
+                    fill={pathname === "/reccurence" ? "white" : "gray"}
                 />
             ),
         },
@@ -169,19 +166,19 @@ export default function Bar() {
             link: "/shareLink",
             icon: (
                 <ShareLinkSvg
-                    fill={colorIcon === "/shareLink" ? "white" : "gray"}
+                    fill={pathname === "/shareLink" ? "white" : "gray"}
                 />
             ),
         },
         {
             title: "Exit",
             link: "/exit",
-            icon: <ExitSvg fill={colorIcon === "/exit" ? "white" : "gray"} />,
+            icon: <ExitSvg fill={pathname === "/exit" ? "white" : "gray"} />,
         },
     ];
 
     return (
-        <Wrapp>
+        <Wrapp minW={"355px"}>
             <PersonalBlock>
                 <Avatar>
                     <img src="/images/avatar.png" alt="avatar" />
@@ -208,7 +205,6 @@ export default function Bar() {
                                         }
                                         w={"100%"}
                                         minW={"200px"}
-                                        onClick={() => setColorIcon(el.link)}
                                         secondary={pathname !== el.link}
                                         title={
                                             <>
@@ -239,7 +235,6 @@ export default function Bar() {
                                         }
                                         w={"100%"}
                                         minW={"200px"}
-                                        onClick={() => setColorIcon(el.link)}
                                         secondary={pathname !== el.link}
                                         title={
                                             <>
